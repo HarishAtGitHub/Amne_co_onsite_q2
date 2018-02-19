@@ -6,9 +6,9 @@ class RealEstateAgencyLocatorPage extends React.Component {
         return (
             <div className="container agencylocator-container">
                 <h1 className="page-header">Amne.co</h1>
-                <div className="row">
+                <div className="row top-buffer">
                     <div className="col-md-5">
-                        <div className="panel panel-default">
+                        <div className="panel panel-default form-panel">
                             <div className="panel-body">
                                 <RealEstateAgencyLocatorForm/>
                             </div>

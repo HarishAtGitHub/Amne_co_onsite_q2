@@ -1,0 +1,26 @@
+body {
+    margin: 0px;
+    padding: 0px;
+    background-image: url("../../img/bg-realestate.jpg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    font-family: sans-serif !important;
+}
+
+.page-header {
+    text-align: center;
+}
+
+.form-header {
+    text-align: center;
+    margin-bottom: 30px;
+    margin-top: 15px;
+    color: #ffebcd
+}
+
+.form-panel {
+    border-radius: 30px;
+    background: rgba(0,0,0,0.5);
+    border: 0px;
+}
