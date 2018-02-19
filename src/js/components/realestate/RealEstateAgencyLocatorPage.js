@@ -4,8 +4,20 @@ import RealEstateAgencyLocatorForm from "./RealEstateAgencyLocatorForm";
 class RealEstateAgencyLocatorPage extends React.Component {
     render() {
         return (
-            <div>real estate page works
-                <RealEstateAgencyLocatorForm/>
+            <div className="container agencylocator-container">
+                <h1 className="page-header">Amne.co</h1>
+                <div className="row">
+                    <div className="col-md-5">
+                        <div className="panel panel-default">
+                            <div className="panel-body">
+                                <RealEstateAgencyLocatorForm/>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="col-md-7">
+                        SHOW  RESULTS HERE
+                    </div>
+                </div>
             </div>
         )
     }
