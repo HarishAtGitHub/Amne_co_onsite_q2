@@ -1,4 +1,5 @@
 import React from "react";
+
 import RealEstateAgencyLocatorForm from "./RealEstateAgencyLocatorForm";
 
 class RealEstateAgencyLocatorPage extends React.Component {
