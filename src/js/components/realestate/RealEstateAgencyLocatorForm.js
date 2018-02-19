@@ -19,6 +19,11 @@ class RealEstateAgencyLocatorForm extends React.Component {
         this.setState({address: deepcopyaddress})
     }
 
+    onSubmit(event) {
+        event.preventDefault();
+        alert(this.state.address[0] + " && " + this.state.address[1]);
+    }
+
     render() {
         const inputPropsloc1 = {
             value: this.state.address[0],
@@ -33,7 +38,7 @@ class RealEstateAgencyLocatorForm extends React.Component {
         };
 
         return (
-            <form>
+            <form onSubmit={this.onSubmit.bind(this)}>
                 <h4 className="form-header"> Real Estate  Agency Locator </h4>
                 <div className="form-group">
                     <PlacesAutocomplete className="form-control" inputProps={inputPropsloc1}/>
