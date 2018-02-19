@@ -24,3 +24,7 @@ body {
     background: rgba(0,0,0,0.5);
     border: 0px;
 }
+
+#PlacesAutocomplete__autocomplete-container {
+    z-index: 99999 !important;
+}
