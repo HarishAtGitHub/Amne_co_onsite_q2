@@ -36,6 +36,9 @@ class LocationsMap extends React.Component {
                     new google.maps.Size(21, 34),
                     new google.maps.Point(0,0),
                     new google.maps.Point(10, 34));
+                let viewOnMapsUrl =`http://www.google.com/search?q=${encodeURIComponent(place.name+ ' '+ place.vicinity)}`
+                let viewOnMapsTag =  `<a target='_blank' href=${viewOnMapsUrl}>view on google maps</a>`
+
                 let marker = new google.maps.Marker({
                     map: map,
                     position: place.geometry.location,
@@ -43,7 +46,9 @@ class LocationsMap extends React.Component {
                 });
 
                 google.maps.event.addListener(marker, 'click', function () {
-                    infowindow.setContent(place.name);
+                    infowindow.setContent('<b>' + place.name + '</b>' + '<br/><br/>' +
+                        place.vicinity + '<br/><br/>' +
+                        viewOnMapsTag );
                     infowindow.open(map, this);
                 });
             }
