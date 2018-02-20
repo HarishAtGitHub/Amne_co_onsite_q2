@@ -1,5 +1,9 @@
 import {geocodeByAddress, getLatLng} from "react-places-autocomplete";
 
+/*
+ Gets list of addresses and then find's its neighors of a particular place type
+ in a particular radius
+ */
 export function getNearestNeighbors(address, placetype, radius, mapref) {
     return (dispatch) => {
         return getAddressListAsLatLngs(address)
@@ -14,6 +18,9 @@ export function getNearestNeighbors(address, placetype, radius, mapref) {
     };
 }
 
+/*
+ Function to convert  list of addresses to object of latitudes and longitudes
+ */
 export function getAddressListAsLatLngs(address) {
     let latLngPromises = []
     for(let i = 0; i < address.length; i++) {
@@ -22,6 +29,9 @@ export function getAddressListAsLatLngs(address) {
     return Promise.all(latLngPromises);
 }
 
+/*
+ Function that takes and address and gives it's latitude and longitude
+ */
 export function getLatLngFromAddress(address) {
     return geocodeByAddress(address)
         .then((geocode) => {
@@ -29,6 +39,10 @@ export function getLatLngFromAddress(address) {
         })
 }
 
+/*
+ Internal method that uses google api to get nearby locations of a particular
+ place type and in a given radius
+ */
 export function nearbySearch(loc, placetype, radius, mapdiv) {
     let center = new google.maps.LatLng(loc.lat, loc.lng);
 
