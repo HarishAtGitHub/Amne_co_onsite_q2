@@ -51,3 +51,9 @@ thead, tbody tr {
     width:100%;
     table-layout:fixed;
 }
+
+#locationsmap {
+    margin-bottom: 30px;
+    height: 500px;
+    width: 100%;
+}

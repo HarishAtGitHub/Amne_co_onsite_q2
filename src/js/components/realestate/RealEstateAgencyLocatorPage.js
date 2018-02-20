@@ -6,6 +6,7 @@ import RealEstateAgencyLocatorForm from "./RealEstateAgencyLocatorForm";
 import {getNearestNeighbors} from "../../actions/googleMapsActions";
 import {setLocations} from "../../actions/locationsActions";
 import LocationsTable  from "../common/LocationsTable";
+import LocationsMap  from "../common/LocationsMap";
 
 class RealEstateAgencyLocatorPage extends React.Component {
     render() {
@@ -26,6 +27,9 @@ class RealEstateAgencyLocatorPage extends React.Component {
                     <div className="col-md-7">
                         <LocationsTable/>
                     </div>
+                </div>
+                <div>
+                    <LocationsMap id="locationsmap"/>
                 </div>
             </div>
         )
