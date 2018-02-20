@@ -40,7 +40,7 @@ class LocationsMap extends React.Component {
                     new google.maps.Point(0,0),
                     new google.maps.Point(10, 34));
                 let viewOnMapsUrl =`http://www.google.com/search?q=${encodeURIComponent(place.name+ ' '+ place.vicinity)}`
-                let viewOnMapsTag =  `<a target='_blank' href=${viewOnMapsUrl}>view on google maps</a>`
+                let viewOnMapsTag =  `<a target='_blank' href=${viewOnMapsUrl}>More Details</a>`
 
                 let marker = new google.maps.Marker({
                     map: map,
