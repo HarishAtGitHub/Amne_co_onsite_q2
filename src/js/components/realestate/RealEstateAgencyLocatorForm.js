@@ -12,7 +12,8 @@ import {
 class RealEstateAgencyLocatorForm extends React.Component {
     constructor(props){
         super(props);
-        this.state = { address: ['', ''] }
+        this.state = { address: ['', ''],
+        errors:{}}
     }
 
     onChangeloc1(address) {
@@ -28,29 +29,51 @@ class RealEstateAgencyLocatorForm extends React.Component {
     }
 
     onSubmit(event) {
+        this.setState({error:{}});
         event.preventDefault();
-        //alert(this.state.address[0] + " && " + this.state.address[1]);
-        const placetype = 'real_estate_agency';
-        const radius = '17000' // 17 km ~ 10 miles
-        this.props.getNearestNeighbors([...this.state.address], placetype, radius, this.refs.map)
-            .then((results) => {
-                getAddressListAsLatLngs(this.state.address)
-                    .then((latLngList) => {
-                        let points = latLngList;
+        if(this.inputIsValid()) {
+            //alert(this.state.address[0] + " && " + this.state.address[1]);
+            const placetype = 'real_estate_agency';
+            const radius = '17000' // 17 km ~ 10 miles
+            this.props.getNearestNeighbors([...this.state.address], placetype, radius, this.refs.map)
+                .then((results) => {
+                    getAddressListAsLatLngs(this.state.address)
+                        .then((latLngList) => {
+                            let points = latLngList;
 
-                        // the googe api's only way to get places is through call back
-                        // but we cannot return value from call back
-                        // even the way to use API is blocked due to cors by google
-                        // and it does not  entertain json api's
-                        // so only way is to wait
-                        // we will make a decision to get only what is available in 4 seconds
-                        // this is not a harm as it will not block.. we will just wait for results
-                        setTimeout(this.setSumDistancesResults, 4000, this, results, points);
-                    })
-            })
-            .catch((error) => {
-                alert(error);
-            })
+                            // the googe api's only way to get places is through call back
+                            // but we cannot return value from call back
+                            // even the way to use API is blocked due to cors by google
+                            // and it does not  entertain json api's
+                            // so only way is to wait
+                            // we will make a decision to get only what is available in 4 seconds
+                            // this is not a harm as it will not block.. we will just wait for results
+                            setTimeout(this.setSumDistancesResults, 4000, this, results, points);
+                        })
+                })
+                .catch((error) => {
+                    alert(error);
+                })
+        }
+    }
+
+    inputIsValid() {
+        let isValid = true;
+        let errors = {
+
+        };
+        if(this.state.address[0] === '') {
+            isValid = false;
+            errors.loc1 = "This field is required !"
+        }
+
+        if(this.state.address[1] === '') {
+            isValid = false;
+            errors.loc2 = "This field is required !"
+        }
+        this.setState({errors});
+        return isValid;
+
     }
 
     setSumDistancesResults(context, locations, points) {
@@ -86,14 +109,21 @@ class RealEstateAgencyLocatorForm extends React.Component {
             placeholder: 'Location 2...'
         };
 
+        const {errors} = this.state;
         return (
             <form onSubmit={this.onSubmit.bind(this)}>
                 <h4 className="form-header"> Real Estate  Agency Locator </h4>
                 <div className="form-group">
                     <PlacesAutocomplete className="form-control" inputProps={inputPropsloc1}/>
+                    {errors.loc1 ?
+                        (<span className="help-block">{errors.loc1}</span>):
+                        ("")}
                 </div>
                 <div className="form-group">
                     <PlacesAutocomplete className="form-control" inputProps={inputPropsloc2}/>
+                    {errors.loc2 ?
+                        (<span className="help-block">{errors.loc2}</span>):
+                        ("")}
                 </div>
                 <div className="form-group">
                     <input type="submit" className="btn btn-lg btn-block btn-success"/>
