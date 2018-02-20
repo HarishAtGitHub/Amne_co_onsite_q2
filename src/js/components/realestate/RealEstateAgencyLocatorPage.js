@@ -10,6 +10,7 @@ import LocationsMap  from "../common/LocationsMap";
 
 class RealEstateAgencyLocatorPage extends React.Component {
     render() {
+        const zoom = 11;
         const {getNearestNeighbors, setLocations} = this.props;
         return (
             <div className="container agencylocator-container">
@@ -29,7 +30,7 @@ class RealEstateAgencyLocatorPage extends React.Component {
                     </div>
                 </div>
                 <div>
-                    <LocationsMap id="locationsmap"/>
+                    <LocationsMap id="locationsmap" zoom={zoom}/>
                 </div>
             </div>
         )

@@ -19,7 +19,7 @@ class LocationsMap extends React.Component {
 
             let map = new google.maps.Map(this.refs.locationsmap, {
                 center: center,
-                zoom: 11
+                zoom: this.props.zoom
             });
             let colors = ["DC143C", "0000FF", "FE7569", "006400", "FF8C00"];
 
@@ -60,7 +60,8 @@ class LocationsMap extends React.Component {
 
 LocationsMap.propTypes = {
     locations : React.PropTypes.array.isRequired,
-    id: React.PropTypes.string.isRequired
+    id: React.PropTypes.string.isRequired,
+    zoom: React.PropTypes.number.isRequired
 };
 
 const mapStateToProps = (state) => {
