@@ -10,10 +10,12 @@ class LocationsTable extends React.Component {
     render() {
         const {locations} = this.props;
         let tableBody = locations.map((location, index) => {
+            let viewOnMapsUrl =`http://www.google.com/search?q=${encodeURIComponent(location.name+ ' '+ location.vicinity)}`
+
             return (
                 <tr key={location.place_id}>
                     <th scope="row">{index + 1}</th>
-                    <td>{location.name}</td>
+                    <td><a target='_blank' href={viewOnMapsUrl}>{location.name}</a></td>
                     <td>{location.vicinity}</td>
                     <td>{location.sumDistance}</td>
                 </tr>
