@@ -1,6 +1,8 @@
 import React from "react";
 import PlacesAutocomplete from 'react-places-autocomplete';
 
+import {getNearestNeighbors} from "../../actions/googleMapsActions"
+
 class RealEstateAgencyLocatorForm extends React.Component {
     constructor(props){
         super(props);
@@ -21,7 +23,20 @@ class RealEstateAgencyLocatorForm extends React.Component {
 
     onSubmit(event) {
         event.preventDefault();
-        alert(this.state.address[0] + " && " + this.state.address[1]);
+        //alert(this.state.address[0] + " && " + this.state.address[1]);
+        const placetype = 'real_estate_agency';
+        const radius = '17000' // 17 km ~ 10 miles
+        this.props.getNearestNeighbors(
+            [...this.state.address],
+            placetype,
+            radius,
+            this.refs.map)
+            .then((results) => {
+                console.log(results);
+            })
+            .catch((error) => {
+                alert(error);
+            })
     }
 
     render() {
@@ -34,7 +49,7 @@ class RealEstateAgencyLocatorForm extends React.Component {
         const inputPropsloc2 = {
             value: this.state.address[1],
             onChange: this.onChangeloc2.bind(this),
-            placeholder: 'Location 1...'
+            placeholder: 'Location 2...'
         };
 
         return (
@@ -49,9 +64,14 @@ class RealEstateAgencyLocatorForm extends React.Component {
                 <div className="form-group">
                     <input type="submit" className="btn btn-lg btn-block btn-success"/>
                 </div>
+                <div id="mapnotused" ref="map"></div>
             </form>
         )
     }
+}
+
+RealEstateAgencyLocatorForm.propTypes = {
+    getNearestNeighbors: React.PropTypes.func.isRequired
 }
 
 export default RealEstateAgencyLocatorForm;

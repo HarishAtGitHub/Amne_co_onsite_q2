@@ -28,3 +28,7 @@ body {
 #PlacesAutocomplete__autocomplete-container {
     z-index: 99999 !important;
 }
+
+#mapnotused {
+    display: none;
+}
