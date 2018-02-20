@@ -1,7 +1,11 @@
 import React from "react";
 import PlacesAutocomplete from 'react-places-autocomplete';
 
-import {getNearestNeighbors} from "../../actions/googleMapsActions"
+import {
+    getNearestNeighbors,
+    getAddressListAsLatLngs,
+    computeDistanceBetweenLocations,
+    setSumDistanceFromPts} from "../../actions/googleMapsActions"
 
 class RealEstateAgencyLocatorForm extends React.Component {
     constructor(props){
@@ -26,13 +30,28 @@ class RealEstateAgencyLocatorForm extends React.Component {
         //alert(this.state.address[0] + " && " + this.state.address[1]);
         const placetype = 'real_estate_agency';
         const radius = '17000' // 17 km ~ 10 miles
-        this.props.getNearestNeighbors(
-            [...this.state.address],
-            placetype,
-            radius,
-            this.refs.map)
+        this.props.getNearestNeighbors([...this.state.address], placetype, radius, this.refs.map)
             .then((results) => {
-                console.log(results);
+                getAddressListAsLatLngs(this.state.address)
+                    .then((latLngList) => {
+                        let points = latLngList;
+
+                        // the googe api's only way to get places is through call back
+                        // but we cannot return value from call back
+                        // even the way to use API is blocked due to cors by google
+                        // and it does not  entertain json api's
+                        // so only way is to wait
+                        // we will make a decision to get only what is available in 4 seconds
+                        // this is not a harm as it will not block.. we will just wait for results
+                        setTimeout(function(){
+                            // computer distance between each near neighbor to location1
+                            let locationsNearByAddress1 = results[0];
+                            setSumDistanceFromPts(locationsNearByAddress1,points);
+                            let locationsNearByAddress2 = results[1];
+                            setSumDistanceFromPts(locationsNearByAddress2,points);
+                            console.log(results);
+                            }, 4000);
+                    })
             })
             .catch((error) => {
                 alert(error);
