@@ -8,6 +8,10 @@ import {setLocations} from "../../actions/locationsActions";
 import LocationsTable  from "../common/LocationsTable";
 import LocationsMap  from "../common/LocationsMap";
 
+/*
+ Page to that holds the  RealEstateAgencyLocatorForm and the visualizations
+ of the results
+ */
 class RealEstateAgencyLocatorPage extends React.Component {
     render() {
         const zoom = 11;

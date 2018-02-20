@@ -2,6 +2,10 @@ import React from "react";
 import {bindActionCreators} from "redux";
 import {connect} from "react-redux";
 
+/*
+ Reusable component to list locations in a table
+ It is responsive with the value of the locations
+ */
 class LocationsTable extends React.Component {
     render() {
         const {locations} = this.props;

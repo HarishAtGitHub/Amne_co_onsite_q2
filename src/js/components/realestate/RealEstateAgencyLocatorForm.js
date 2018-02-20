@@ -9,6 +9,11 @@ import {
     computeDistanceBetweenLocations,
     setSumDistanceFromPts} from "../../actions/googleMapsActions"
 
+/*
+  This form get's two addresses and find's its nearby real estate agencies and
+  then it calculate the sum distance which is the sum of distance between
+  it and each of two  addresses and then sorts the results.
+ */
 class RealEstateAgencyLocatorForm extends React.Component {
     constructor(props){
         super(props);
@@ -57,6 +62,9 @@ class RealEstateAgencyLocatorForm extends React.Component {
         }
     }
 
+    /*
+     Validator for the form inputs
+     */
     inputIsValid() {
         let isValid = true;
         let errors = {
@@ -76,6 +84,9 @@ class RealEstateAgencyLocatorForm extends React.Component {
 
     }
 
+    /*
+     Sorts and submits the results
+     */
     setSumDistancesResults(context, locations, points) {
         // computer distance between each near neighbor to location1
         let locationsNearByAddress1 = locations[0];

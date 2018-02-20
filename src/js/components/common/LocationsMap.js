@@ -1,7 +1,10 @@
 import React from "react";
 import {bindActionCreators} from "redux";
 import {connect} from "react-redux";
-
+/*
+ Reusable component to draw locations  on the map.
+ It is responsive with the value of the locations
+ */
 class LocationsMap extends React.Component {
     componentDidUpdate() {
         this.populateMap();
