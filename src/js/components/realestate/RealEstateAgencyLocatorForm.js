@@ -43,19 +43,22 @@ class RealEstateAgencyLocatorForm extends React.Component {
                         // so only way is to wait
                         // we will make a decision to get only what is available in 4 seconds
                         // this is not a harm as it will not block.. we will just wait for results
-                        setTimeout(function(){
-                            // computer distance between each near neighbor to location1
-                            let locationsNearByAddress1 = results[0];
-                            setSumDistanceFromPts(locationsNearByAddress1,points);
-                            let locationsNearByAddress2 = results[1];
-                            setSumDistanceFromPts(locationsNearByAddress2,points);
-                            console.log(results);
-                            }, 4000);
+                        setTimeout(this.setSumDistancesResults, 4000, this, results, points);
                     })
             })
             .catch((error) => {
                 alert(error);
             })
+    }
+
+    setSumDistancesResults(context, locations, points) {
+        // computer distance between each near neighbor to location1
+        let locationsNearByAddress1 = locations[0];
+        setSumDistanceFromPts(locationsNearByAddress1, points);
+        let locationsNearByAddress2 = locations[1];
+        setSumDistanceFromPts(locationsNearByAddress2, points);
+        let results = [...locations[0], ...locations[1]]
+        console.log(results)
     }
 
     render() {
