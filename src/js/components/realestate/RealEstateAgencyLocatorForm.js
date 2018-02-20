@@ -57,6 +57,14 @@ class RealEstateAgencyLocatorForm extends React.Component {
         setSumDistanceFromPts(locationsNearByAddress1, points);
         let locationsNearByAddress2 = locations[1];
         setSumDistanceFromPts(locationsNearByAddress2, points);
+        // clustering helps detect issues easily and also used
+        // in better visualizing clusters
+        for(let location of locationsNearByAddress1) {
+            location.cluster = 1;
+        }
+        for(let location of locationsNearByAddress2) {
+            location.cluster = 2;
+        }
         let results = [...locations[0], ...locations[1]]
         console.log(results)
     }
