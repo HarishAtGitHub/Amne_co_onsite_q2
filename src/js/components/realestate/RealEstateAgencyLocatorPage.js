@@ -5,6 +5,7 @@ import {bindActionCreators} from "redux";
 import RealEstateAgencyLocatorForm from "./RealEstateAgencyLocatorForm";
 import {getNearestNeighbors} from "../../actions/googleMapsActions";
 import {setLocations} from "../../actions/locationsActions";
+import LocationsTable  from "../common/LocationsTable";
 
 class RealEstateAgencyLocatorPage extends React.Component {
     render() {
@@ -23,7 +24,7 @@ class RealEstateAgencyLocatorPage extends React.Component {
                         </div>
                     </div>
                     <div className="col-md-7">
-                        SHOW  RESULTS HERE
+                        <LocationsTable/>
                     </div>
                 </div>
             </div>

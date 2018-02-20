@@ -1,6 +1,7 @@
 import React from "react";
 import PlacesAutocomplete from 'react-places-autocomplete';
-import sortBy from "lodash/sortBy"
+import sortBy from "lodash/sortBy";
+import uniqBy from "lodash/uniqBy";
 
 import {
     getNearestNeighbors,
@@ -67,7 +68,8 @@ class RealEstateAgencyLocatorForm extends React.Component {
             location.cluster = 2;
         }
         let results = [...locations[0], ...locations[1]]
-        results = sortBy(results, 'sumDistance')
+        results = sortBy(results, 'sumDistance');
+        results =  uniqBy(results, 'place_id');
         context.props.setLocations(results);
     }
 

@@ -32,3 +32,22 @@ body {
 #mapnotused {
     display: none;
 }
+
+table {
+    background: whitesmoke;
+}
+
+/* to make table scrollable */
+tbody {
+    display:block;
+    max-height:350px;
+    overflow:auto;
+}
+/* the following is  necessary  or else tbody with come inside first column
+and display table makes thead and  tbody tr work like table element
+ */
+thead, tbody tr {
+    display:table;
+    width:100%;
+    table-layout:fixed;
+}
