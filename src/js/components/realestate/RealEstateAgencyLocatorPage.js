@@ -4,10 +4,11 @@ import {bindActionCreators} from "redux";
 
 import RealEstateAgencyLocatorForm from "./RealEstateAgencyLocatorForm";
 import {getNearestNeighbors} from "../../actions/googleMapsActions";
+import {setLocations} from "../../actions/locationsActions";
 
 class RealEstateAgencyLocatorPage extends React.Component {
     render() {
-        const {getNearestNeighbors} = this.props;
+        const {getNearestNeighbors, setLocations} = this.props;
         return (
             <div className="container agencylocator-container">
                 <h1 className="page-header">Amne.co</h1>
@@ -15,7 +16,9 @@ class RealEstateAgencyLocatorPage extends React.Component {
                     <div className="col-md-5">
                         <div className="panel panel-default form-panel">
                             <div className="panel-body">
-                                <RealEstateAgencyLocatorForm getNearestNeighbors={getNearestNeighbors}/>
+                                <RealEstateAgencyLocatorForm
+                                    getNearestNeighbors={getNearestNeighbors}
+                                    setLocations={setLocations}/>
                             </div>
                         </div>
                     </div>
@@ -29,7 +32,8 @@ class RealEstateAgencyLocatorPage extends React.Component {
 }
 
 RealEstateAgencyLocatorPage.propTypes = {
-    getNearestNeighbors: React.PropTypes.func.isRequired
+    getNearestNeighbors: React.PropTypes.func.isRequired,
+    setLocations: React.PropTypes.func.isRequired
 };
 
 const mapStateToProps = (state) => {
@@ -40,7 +44,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return bindActionCreators(
         {
-            getNearestNeighbors: getNearestNeighbors
+            getNearestNeighbors: getNearestNeighbors,
+            setLocations: setLocations
         },
         dispatch
     )

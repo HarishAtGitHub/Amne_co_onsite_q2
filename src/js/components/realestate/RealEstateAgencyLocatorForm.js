@@ -66,7 +66,7 @@ class RealEstateAgencyLocatorForm extends React.Component {
             location.cluster = 2;
         }
         let results = [...locations[0], ...locations[1]]
-        console.log(results)
+        context.props.setLocations(results);
     }
 
     render() {
@@ -101,7 +101,8 @@ class RealEstateAgencyLocatorForm extends React.Component {
 }
 
 RealEstateAgencyLocatorForm.propTypes = {
-    getNearestNeighbors: React.PropTypes.func.isRequired
+    getNearestNeighbors: React.PropTypes.func.isRequired,
+    setLocations: React.PropTypes.func.isRequired
 }
 
 export default RealEstateAgencyLocatorForm;

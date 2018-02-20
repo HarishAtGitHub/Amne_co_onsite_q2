@@ -1,6 +1,8 @@
 import React from "react";
 import {combineReducers} from "redux";
 
-export default combineReducers({
+import locationsReducer from "./locationsReducer";
 
+export default combineReducers({
+    locations: locationsReducer
 });
