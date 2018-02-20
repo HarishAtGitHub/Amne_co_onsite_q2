@@ -21,12 +21,25 @@ class LocationsMap extends React.Component {
                 center: center,
                 zoom: 11
             });
+            let colors = ["DC143C", "0000FF", "FE7569", "006400", "FF8C00"];
 
             let infowindow = new google.maps.InfoWindow();
             for(let place of this.props.locations) {
+                let pinColor;
+                if(colors.length >= place.cluster) {
+                    pinColor = colors[place.cluster % colors.length]
+                } else {
+                    pinColor = colors[place.cluster]
+                }
+
+                let pinImage = new google.maps.MarkerImage("http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|" + pinColor,
+                    new google.maps.Size(21, 34),
+                    new google.maps.Point(0,0),
+                    new google.maps.Point(10, 34));
                 let marker = new google.maps.Marker({
                     map: map,
-                    position: place.geometry.location
+                    position: place.geometry.location,
+                    icon: pinImage
                 });
 
                 google.maps.event.addListener(marker, 'click', function () {
