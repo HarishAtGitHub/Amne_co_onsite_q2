@@ -5,4 +5,4 @@ FRONTEND
 2. npm run dev
 3. open http://0.0.0.0:9000 in browser
 
-![pic1](https://user-images.githubusercontent.com/5524260/36512356-af1afe02-172f-11e8-9f89-e817672be998.png)
+![screenshot-real](https://user-images.githubusercontent.com/5524260/36616139-4aad36ae-18a8-11e8-8b57-e5b5f9c7c8d0.png)
